@@ -1,0 +1,101 @@
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            
+            <title><%=title%></title>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+            
+            <script src="/script/js/jquery-3.2.1.min.js"></script>
+            <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+            
+            <script src="/script/js/main.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+
+        </head>
+        <body>
+            <!--<form action="/api/tts">-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>Google Text To Speech to MP3</h1>
+                            <div class="form-group" style="display:none">
+                                <label class="control-label col-sm-2" for="email">Detected Language :</label>
+                                <div class="col-sm-10">
+                                    <span id="spLang"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pwd">Language:</label>
+                                <div class="col-sm-10"> 
+                                    <select name="language" class="form-control" id="ddlLang">
+                                        <% if(lang.length){ 
+                                            for(var i = 0;i < lang.length;i++) {
+                                            %><option value=<%=lang[i].code %>>
+                                                    <%=lang[i].name%>
+                                                </option>
+                                            <% }    
+                                        } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email">Text to speech :</label>
+                                <div class="col-sm-10">
+                                    <textarea name="query" id="ttsText" class="form-control" cols="100" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">        
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <a id="btnDownload" role="button" class="btn btn-default"  data-toggle="modal">Download</a>
+                                    <span id="spMsg"></span><br/>    
+                                    <a  href="#myModal" id="modalButton" ></a>
+                                </div>
+                            </div>
+                        <div class="meter" id="progressBarContainer">
+                            <span id="progressBar" style="width: 25%"></span>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+                  
+                  <!-- Modal -->
+            <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
+                    </div>
+                    <div class="modal-body center-block"> 
+                        <i class="fa fa-quote-right"></i>
+                            <span id="kataMutiara">Mohon tunggu, sedang memproses mp3</span>
+                        <i class="fa fa-quote-left"></i>
+                        <div class="progress">
+                        <div class="progress-bar bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            
+                        </div>
+                        </div>
+                    </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <div class="modal fade" id="myModalMP3" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
+                        </div>
+                        <div class="modal-body center-block">
+                            <audio controls="controls" id="audioControl">
+                                    <source id="audioTarget" src="http://localhost:3000/script/all.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                  
+        </body>
+    </html>
