@@ -57,7 +57,7 @@ var bootstrap = require("express-bootstrap-service");
 	
 
 	function startServer() {
-		var port = process.env.PORT;
+		var port = process.env.PORT || 3000;
 		
 		//var jsonParser = bodyParser.json();
 		//app.use(bodyParser.urlEncoded());
