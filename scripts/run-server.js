@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var multiparty = require("multiparty");	
+var env = require('node-env-file');
 const { spawn } = require('child_process');
 
 var bodyParser = require('body-parser');
@@ -56,7 +57,7 @@ var bootstrap = require("express-bootstrap-service");
 	
 
 	function startServer() {
-		var port = 3000;//process.env.PORT;
+		var port = process.env.PORT;
 		
 		//var jsonParser = bodyParser.json();
 		//app.use(bodyParser.urlEncoded());
