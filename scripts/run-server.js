@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var multiparty = require("multiparty");	
-var env = require('node-env-file');
+require('dotenv').config()
 const { spawn } = require('child_process');
 
 var bodyParser = require('body-parser');
