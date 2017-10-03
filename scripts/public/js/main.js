@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-    var socket = io.connect('https://secure-garden-93788.herokuapp.com:3000'); 
+    var socket = io.connect(); 
     $("#btnDownload").addClass('disabled');
     // var id = socket.io.engine.id;
     // alert(  id); 
