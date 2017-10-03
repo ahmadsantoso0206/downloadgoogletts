@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-    var socket = io.connect('http://192.168.43.240:3000'); 
+    var socket = io.connect('https://secure-garden-93788.herokuapp.com:3000'); 
     $("#btnDownload").addClass('disabled');
     // var id = socket.io.engine.id;
     // alert(  id); 
@@ -186,7 +186,7 @@ $(document).ready(function(){
         var linkdownloads = {};
         linkdownloads["clientID"]=datetime;
         jQuery.each(outputTTS, function(index, item) {
-            linkdownloads["link" + index]="http://192.168.43.240:3000/api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
+            linkdownloads["link" + index]="https://secure-garden-93788.herokuapp.com/api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
             //downloadMP3(linkdownloads["link"+ index],index);
         });
         if (outputTTS.length==1){
