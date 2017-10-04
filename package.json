@@ -13,7 +13,7 @@
     "express-bootstrap-service": "^1.0.0",
     "express-fileupload": "^0.2.0",
     "extend": "^3.0.0",
-    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
     "form-data": "1.0.0-rc3",
     "fs-promise": "^0.5.0",
     "jquery": "^3.2.1",
@@ -28,8 +28,7 @@
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
     "socket.io": "^2.0.3",
-    "wav": "^1.0.1",
-    "dotenv": "^4.0.0"
+    "wav": "^1.0.1"
   },
   "config": {
     "port": 9333
