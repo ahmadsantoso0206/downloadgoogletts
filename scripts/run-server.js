@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
 	});
 	
 });
-var port = 3000;
+var port =process.env.PORT || 3000;
 
 var LanguageDetect = 	require('languagedetect');
 var lngDetector = new LanguageDetect();
@@ -70,11 +70,7 @@ var bootstrap = require("express-bootstrap-service");
 	
 
 	function startServer() {
-<<<<<<< HEAD
 		
-=======
-		var port = process.env.PORT || 3000;
->>>>>>> f4bf3290aaa76ed7f821d92bd741bf1c4d54998f
 		
 		//var jsonParser = bodyParser.json();
 		//app.use(bodyParser.urlEncoded());
