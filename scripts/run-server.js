@@ -15,14 +15,27 @@ var binaryServer = require('binaryjs').BinaryServer;
 var wav = require('wav');
 var FfmpegCommand = require('fluent-ffmpeg');
 var command = new FfmpegCommand();
-
+require('dotenv').config();
 const app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
-io.on('connect', function (socket) {			
-	socket.emit('connect',socket.id);
+// process.env.PORT ||
+io.on('connection', function (socket) {
+	var addedUser = false;
+	
+	// when the client emits 'new message', this listens and executes
+	socket.on('new message', function (data) {
+		// we tell the client to execute 'new message'
+		socket.broadcast.emit('new message', {
+		username: socket.username,
+		message: data
+		});
+	});
+	
 });
-var LanguageDetect = require('languagedetect');
+var port = 3000;
+
+var LanguageDetect = 	require('languagedetect');
 var lngDetector = new LanguageDetect();
 
 
@@ -56,7 +69,7 @@ var bootstrap = require("express-bootstrap-service");
 	
 
 	function startServer() {
-		var port = 3000;//process.env.PORT;
+		
 		
 		//var jsonParser = bodyParser.json();
 		//app.use(bodyParser.urlEncoded());
@@ -71,14 +84,9 @@ var bootstrap = require("express-bootstrap-service");
 		
 		idx.get(function(req,res,next){
 			res.render('index',{title:'Text To Speech Downloader',lang:lang});
-			function exitHandler(options, err) {
-				if (options.cleanup) console.log('clean');
-				if (err) console.log(err.stack);
-				if (options.exit) process.exit();
-			}
 			
-			exitHandler.bind(null,{cleanup:true});
-		
+			
+			
 		});
 		
 		//return;
@@ -97,6 +105,10 @@ var bootstrap = require("express-bootstrap-service");
 			
 		});
 		
+		//io.socket.emit('connect','connected');
+		
+
+
 		return initManager.start();
 	}
 	detectLang.post(function(req,res,next){

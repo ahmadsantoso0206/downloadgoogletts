@@ -1,14 +1,12 @@
-
+var url      = window.location.href;
 
 $(document).ready(function(){
-    var socket = io.connect('http://192.168.43.240:3000'); 
+    var socket = io();   
+    socket.emit('new message', 'test satu dua tiga');
     $("#btnDownload").addClass('disabled');
     // var id = socket.io.engine.id;
     // alert(  id); 
-    // socket.on('connect', function (data) {
-        
-    //     alert(data);
-    // });
+    
     $("#ttsText").change(function(){
         if (this.value==""){
             $("#btnDownload").addClass('disabled');
@@ -186,7 +184,7 @@ $(document).ready(function(){
         var linkdownloads = {};
         linkdownloads["clientID"]=datetime;
         jQuery.each(outputTTS, function(index, item) {
-            linkdownloads["link" + index]="http://192.168.43.240:3000/api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
+            linkdownloads["link" + index]=url+"api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
             //downloadMP3(linkdownloads["link"+ index],index);
         });
         if (outputTTS.length==1){
