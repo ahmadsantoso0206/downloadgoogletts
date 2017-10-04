@@ -1,6 +1,7 @@
 var url      = window.location.href;
 
 $(document).ready(function(){
+    $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">');
     var socket = io();   
     socket.emit('new message', 'test satu dua tiga');
     $("#btnDownload").addClass('disabled');
