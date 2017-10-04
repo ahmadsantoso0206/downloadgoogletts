@@ -1,8 +1,12 @@
 var url      = window.location.href;
 
 $(document).ready(function(){
+<<<<<<< HEAD
     var socket = io();   
     socket.emit('new message', 'test satu dua tiga');
+=======
+    var socket = io.connect(https://secure-garden-93788.herokuapp.comL:3000); 
+>>>>>>> f4bf3290aaa76ed7f821d92bd741bf1c4d54998f
     $("#btnDownload").addClass('disabled');
     // var id = socket.io.engine.id;
     // alert(  id); 
@@ -184,7 +188,11 @@ $(document).ready(function(){
         var linkdownloads = {};
         linkdownloads["clientID"]=datetime;
         jQuery.each(outputTTS, function(index, item) {
+<<<<<<< HEAD
             linkdownloads["link" + index]=url+"api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
+=======
+            linkdownloads["link" + index]="https://secure-garden-93788.herokuapp.com/api/tts?language="+ lang +"&query=" + encodeURIComponent(outputTTS[index])+"&total="+outputTTS.length+"&idx="+index+"&textlen="+outputTTS[index].length+"&prev=input";
+>>>>>>> f4bf3290aaa76ed7f821d92bd741bf1c4d54998f
             //downloadMP3(linkdownloads["link"+ index],index);
         });
         if (outputTTS.length==1){

@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var multiparty = require("multiparty");	
+require('dotenv').config()
 const { spawn } = require('child_process');
 
 var bodyParser = require('body-parser');
@@ -69,7 +70,11 @@ var bootstrap = require("express-bootstrap-service");
 	
 
 	function startServer() {
+<<<<<<< HEAD
 		
+=======
+		var port = process.env.PORT || 3000;
+>>>>>>> f4bf3290aaa76ed7f821d92bd741bf1c4d54998f
 		
 		//var jsonParser = bodyParser.json();
 		//app.use(bodyParser.urlEncoded());
