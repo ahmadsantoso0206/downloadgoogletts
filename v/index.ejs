@@ -1,101 +1,219 @@
     <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta charset="utf-8" />
+            <!--[if lte IE 8]><script src="/script/assets/js/ie/html5shiv.js"></script><![endif]-->
+            <link rel="stylesheet" href="/script/assets/css/main.css" />
             
             <title><%=title%></title>
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
             
             <script src="/script/js/jquery-3.2.1.min.js"></script>
             <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
             
             <script src="/script/js/main.js"></script>
             <script src="/socket.io/socket.io.js"></script>
             <link rel="shortcut icon" href="/script/img/logo.png">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-9782512858889233",
+                enable_page_level_ads: true
+              });
+            </script>
         </head>
-        <body>
+        <body class="landing">
+            <!-- Header -->
+			<header id="header" class="alt">
+                    <h1><a href="https://downloadgoogletts.herokuapp.com" alt="Unlimited Text To Speech MP3">Unlimited Text To Speech  MP3</a></h1>
+                    
+                </header>
+            <!-- Banner -->
+                <section id="banner">
+                    <i class="icon"><img src="/script/img/logo.png"/ style="width:70px;margin-top:-14px;margin-left:-5px"></i>
+                    <h2>Unlimited Text!</h2>
+                    <p>Download As Long As You Want</p>
+                </section>
+    
+            <!-- One -->
+            <section id="two" class="wrapper special">
+                <div class="inner">
+                    <header class="major narrow	">
+                        <h2>Free online Text To Speech</h2>
+                        <p>Just enter your text, and click download!</p>
+                        <p>Free online Text to Speech - HD text2speech
+                                Convert your text to speech MP3 file. Unlimited Text, All Free!, generate MP3 files in few seconds and download it when you are satisfied with generated speech. You can use generated MP3s in your YouTube videos or in your Home automation for example.</p> 
+                    </header>
+                    <ul class="actions">
+                        <li><a href="#" class="button big alt">Convert Your Unlimited Text To MP3!</a></li>
+                    </ul>
+                </div>        
+            </section>
+    
+            <!-- Three -->
+                <section id="three" class="wrapper style3 special">
+                        <div class="inner">
+                                <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                
+                                                    <div class="form-group" style="display:none">
+                                                        <h3 class="control-label col-sm-2" for="email">Detected Language :</h3>
+                                                        <div class="col-sm-10">
+                                                            <span id="spLang"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h3>Select Your Language </h3>
+                                                        <div> 
+                                                            <select name="language" class="form-control" style="font-size:20px;height:50px;color:white;background-color:grey" id="ddlLang">
+                                                                <% if(lang.length){ 
+                                                                    for(var i = 0;i < lang.length;i++) {
+                                                                    %><option value=<%=lang[i].code %>>
+                                                                            <%=lang[i].name%>
+                                                                        </option>
+                                                                    <% }    
+                                                                } %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h3>Text to speech :</h3>
+                                                        <div>
+                                                            <textarea name="query" id="ttsText" class="form-control" style="font-size:20px" cols="100" rows="7"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">            
+                                                        <div class="col-sm-16">
+                                                            <a id="btnDownload" role="button" class="btn btn-success" style="width:100%"  data-toggle="modal"><h3 style="color:white!important;margin-top:15px">Generate Your Text To Speech!</h3></a>
+                                                            <span id="spMsg"></span><br/>    
+                                                            <a  href="#myModal" id="modalButton" ></a>
+                                                        </div>
+                                                    </div>
+                                                <div class="meter" id="progressBarContainer">
+                                                    <span id="progressBar" style="width: 25%"></span>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                          
+                                          <!-- Modal -->
+                                    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
+                                            </div>
+                                            <div class="modal-body center-block"> 
+                                                <i class="fa fa-quote-right"></i>
+                                                    <span id="kataMutiara">Mohon tunggu, sedang memproses mp3</span>
+                                                <i class="fa fa-quote-left"></i>
+                                                <div class="progress">
+                                                <div class="progress-bar bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                    
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                    <div class="modal fade" id="myModalMP3" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
+                                                </div>
+                                                <div class="modal-body center-block">
+                                                    <audio controls="controls" id="audioControl">
+                                                            <source id="audioTarget" src="http://localhost:9333/script/all.mp3" type="audio/mpeg">
+                                                            Your browser does not support the audio element.
+                                                    </audio>
+                                                </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                        </div>
+                </section>
+
+                <section id="one" class="wrapper style1">
+                        <div class="inner">
+                            <header class="major narrow	">
+                                <h2>Free online Text To Speech</h2>
+                                <p>Just enter your text, and click download!</p>
+                                <p>Free online Text to Speech - HD text2speech
+                                        Convert your text to speech MP3 file. Unlimited Text, All Free!, generate MP3 files in few seconds and download it when you are satisfied with generated speech. You can use generated MP3s in your YouTube videos or in your Home automation for example.</p> 
+                            </header>
+                        </div>        
+                </section>
+        
+                <!-- Two -->
+                    
+    
+            <!-- Four -->
+                <section id="four" class="wrapper style2 special">
+                    <div class="inner">
+                        <header class="major narrow">
+                            <h2>Get in touch</h2>
+                            <p>Contact Us</p>
+                        </header>
+                        <form action="#" method="POST">
+                            <div class="container 75%">
+                                <div class="row uniform 50%">
+                                    <div class="6u 12u$(xsmall)">
+                                        <input name="name" placeholder="Name" type="text" />
+                                    </div>
+                                    <div class="6u$ 12u$(xsmall)">
+                                        <input name="email" placeholder="Email" type="email" />
+                                    </div>
+                                    <div class="12u$">
+                                        <textarea name="message" placeholder="Message" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="actions">
+                                <li><input type="submit" class="special" value="Submit" /></li>
+                                <li><input type="reset" class="alt" value="Reset" /></li>
+                            </ul>
+                        </form>
+                    </div>
+                </section>
+    
+            <!-- Footer -->
+                <footer id="footer">
+                    <div class="inner">
+                        <ul class="icons">
+                            <li><a href="#" class="icon fa-facebook">
+                                <span class="label">Facebook</span>
+                            </a></li>
+                            <li><a href="#" class="icon fa-twitter">
+                                <span class="label">Twitter</span>
+                            </a></li>
+                            <li><a href="#" class="icon fa-instagram">
+                                <span class="label">Instagram</span>
+                            </a></li>
+                            <li><a href="#" class="icon fa-linkedin">
+                                <span class="label">LinkedIn</span>
+                            </a></li>
+                        </ul>
+                        <ul class="copyright">
+                            <li>&copy; TextToMp3.ml</li>
+                            <li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+                            <li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+                        </ul>
+                    </div>
+                </footer>
+    
+            <!-- Scripts -->
+                <!--<script src="/script/assets/js/jquery.min.js"></script>
+                <script src="/script/assets/js/skel.min.js"></script>
+                <script src="/script/assets/js/util.js"></script>-->
+                <!--[if lte IE 8]><script src="/script/assets/js/ie/respond.min.js"></script><![endif]-->
+                <!--<script src="/script/assets/js/main.js"></script>-->
             <!--<form action="/api/tts">-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-10">
-                        <h1>Google Text To Speech to MP3</h1>
-                            <div class="form-group" style="display:none">
-                                <label class="control-label col-sm-2" for="email">Detected Language :</label>
-                                <div class="col-sm-10">
-                                    <span id="spLang"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="pwd">Language:</label>
-                                <div class="col-sm-10"> 
-                                    <select name="language" class="form-control" id="ddlLang">
-                                        <% if(lang.length){ 
-                                            for(var i = 0;i < lang.length;i++) {
-                                            %><option value=<%=lang[i].code %>>
-                                                    <%=lang[i].name%>
-                                                </option>
-                                            <% }    
-                                        } %>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="email">Text to speech :</label>
-                                <div class="col-sm-10">
-                                    <textarea name="query" id="ttsText" class="form-control" cols="100" rows="10"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">        
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <a id="btnDownload" role="button" class="btn btn-default"  data-toggle="modal">Download</a>
-                                    <span id="spMsg"></span><br/>    
-                                    <a  href="#myModal" id="modalButton" ></a>
-                                </div>
-                            </div>
-                        <div class="meter" id="progressBarContainer">
-                            <span id="progressBar" style="width: 25%"></span>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-                  
-                  <!-- Modal -->
-            <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
-                    </div>
-                    <div class="modal-body center-block"> 
-                        <i class="fa fa-quote-right"></i>
-                            <span id="kataMutiara">Mohon tunggu, sedang memproses mp3</span>
-                        <i class="fa fa-quote-left"></i>
-                        <div class="progress">
-                        <div class="progress-bar bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            
-                        </div>
-                        </div>
-                    </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <div class="modal fade" id="myModalMP3" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-clock-o"></i> Please Wait</h4>
-                        </div>
-                        <div class="modal-body center-block">
-                            <audio controls="controls" id="audioControl">
-                                    <source id="audioTarget" src="http://localhost:3000/script/all.mp3" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+            
                   
         </body>
     </html>

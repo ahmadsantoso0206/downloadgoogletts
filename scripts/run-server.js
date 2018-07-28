@@ -85,7 +85,7 @@ var bootstrap = require("express-bootstrap-service");
 		});// =  JSON.parse(fs.readFile('n', 'utf8'));
 		
 		idx.get(function(req,res,next){
-			res.render('index',{title:'Text To Speech Downloader',lang:lang});
+			res.render('index',{title:'Text To Speech MP3 | Unlimited Text To Speech MP3',lang:lang});
 			
 			
 			
