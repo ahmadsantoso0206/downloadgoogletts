@@ -45,7 +45,10 @@ var bootstrap = require("express-bootstrap-service");
 	// OR
 	// var lngDetector = new (require('languagedetect'));
 	
-	
+	app.use('/robots.txt', function (req, res, next) {
+		res.type('text/plain')
+		res.send("User-agent: *\nDisallow: /");
+	});	
 
 	app.set('views','./v');
 	app.set('view engine','ejs');
