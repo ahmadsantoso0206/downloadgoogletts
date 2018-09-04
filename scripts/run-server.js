@@ -47,7 +47,7 @@ var bootstrap = require("express-bootstrap-service");
 	
 	app.use('/robots.txt', function (req, res, next) {
 		res.type('text/plain')
-		res.send("User-agent: *\nDisallow: /");
+		res.send("User-agent: *");
 	});	
 
 	app.set('views','./v');
